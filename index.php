@@ -64,6 +64,19 @@ try {
                 $response = ['status' => 0, 'message' => 'Failed to Update'];
             }
             break;
+        
+        case "DELETE":
+            $sql = "DELETE FROM users WHERE id= :id";
+            $path = explode('/',$_SERVER['REQUEST_URI']);
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id',$path[3]);
+            if($stmt->execute()){ // Corrected 'executed()' to 'execute()'
+                $response = ['status' => 1, 'message' => 'Deleted'];
+            }
+            else{
+                $response = ['status' => 0, 'message' => 'Failed to Delete'];
+            }
+            break;
     }
 } catch (PDOException $e) {
     // Handle database connection error
