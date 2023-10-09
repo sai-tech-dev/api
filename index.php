@@ -78,11 +78,12 @@ try {
             }
             break;
     }
-} catch (PDOException $e) {
+} catch (PDOException $e) { 
     // Handle database connection error
     $response = ['status' => 0, 'message' => 'Database Connection Error: ' . $e->getMessage()];
 }
 
+//learning git
 // Send the JSON response
 header('Content-Type: application/json');
 echo json_encode($response);
